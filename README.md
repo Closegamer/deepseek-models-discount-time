@@ -33,7 +33,13 @@ macOS and Linux example:
 git clone https://github.com/Closegamer/deepseek-models-discount-time ~/opencode/deepseek-models-discount-time
 ```
 
-2. Add the plugin folder to `plugins` in your global `~/.config/opencode/opencode.json` or in a project `opencode.json`. Windows:
+2. Add the plugin folder to `plugins` in your global `~/.config/opencode/opencode.json` or in a project `opencode.json`. On Windows, run this from the repo folder:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\install.ps1
+```
+
+Add `-Config C:\path\to\opencode.json` for a project config. An existing file is backed up to `opencode.json.bak`. Or edit the file by hand:
 
 ```jsonc
 {
@@ -139,7 +145,13 @@ git clone https://github.com/Closegamer/deepseek-models-discount-time C:\a_REPOS
 git clone https://github.com/Closegamer/deepseek-models-discount-time ~/opencode/deepseek-models-discount-time
 ```
 
-2. Добавьте папку плагина в `plugins` в глобальном `~/.config/opencode/opencode.json` или в проектном `opencode.json`. Windows:
+2. Добавьте папку плагина в `plugins` в глобальном `~/.config/opencode/opencode.json` или в проектном `opencode.json`. В Windows запустите из папки репозитория:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\install.ps1
+```
+
+Для проектного конфига добавьте `-Config C:\path\to\opencode.json`. Существующий файл сохраняется в `opencode.json.bak`. Либо отредактируйте файл вручную:
 
 ```jsonc
 {
