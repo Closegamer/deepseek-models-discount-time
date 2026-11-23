@@ -21,33 +21,42 @@ Pricing source: https://api-docs.deepseek.com/quick_start/pricing
 
 Requirements: OpenCode V2. Node 18 or newer is needed only for running the status script by hand.
 
-1. Clone the repo:
+1. Clone the repo into a permanent folder. Do not clone into a temp directory, `C:\Program Files`, or the OpenCode cache, and do not move the folder after installing. Windows example:
 
 ```sh
-git clone https://github.com/Closegamer/deepseek-models-discount-time
+git clone https://github.com/Closegamer/deepseek-models-discount-time C:\a_REPOS\deepseek-models-discount-time
 ```
 
-2. Add the plugin folder to `plugins` in your global `~/.config/opencode/opencode.json` or in a project `opencode.json`:
+macOS and Linux example:
+
+```sh
+git clone https://github.com/Closegamer/deepseek-models-discount-time ~/opencode/deepseek-models-discount-time
+```
+
+2. Add the plugin folder to `plugins` in your global `~/.config/opencode/opencode.json` or in a project `opencode.json`. Windows:
 
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugins": ["/absolute/path/to/deepseek-models-discount-time/deepseek-peak"]
+  "plugins": ["C:/a_REPOS/deepseek-models-discount-time/deepseek-peak"]
 }
 ```
 
-Windows example:
+macOS and Linux:
 
 ```jsonc
-"plugins": ["C:/a_REPOS/skills/deepseek-peak"]
+"plugins": ["/home/you/opencode/deepseek-models-discount-time/deepseek-peak"]
 ```
+
+Use an absolute path. A relative path is resolved from the directory where OpenCode runs, so it can break when you switch projects.
 
 OpenCode reloads configuration on save, no restart needed. The plugin registers the skill too, so no separate `skills` entry is required.
 
 3. Check the script:
 
 ```sh
-node /absolute/path/to/deepseek-models-discount-time/deepseek-peak/peak.mjs
+node C:/a_REPOS/deepseek-models-discount-time/deepseek-peak/peak.mjs # Windows
+node ~/opencode/deepseek-models-discount-time/deepseek-peak/peak.mjs # macOS and Linux
 ```
 
 Example output:
@@ -65,7 +74,13 @@ To uninstall, remove the entry from `plugins` and reload.
 Drop `plugins` and add the repo root as a skill source instead:
 
 ```jsonc
-"skills": ["/absolute/path/to/deepseek-models-discount-time"]
+"skills": ["C:/a_REPOS/deepseek-models-discount-time"]
+```
+
+or on macOS and Linux:
+
+```jsonc
+"skills": ["/home/you/opencode/deepseek-models-discount-time"]
 ```
 
 The assistant then loads `deepseek-peak` when you ask about price, peak hours, or timing of a long task.
@@ -112,33 +127,42 @@ DeepSeek берёт полную цену с понедельника по пя�
 
 Нужен OpenCode V2. Node 18 или новее требуется только для ручного запуска скрипта.
 
-1. Клонируйте репозиторий:
+1. Клонируйте репозиторий в постоянную папку. Не клонируйте во временную папку, `C:\Program Files` или кеш OpenCode, и не перемещайте папку после установки. Пример для Windows:
 
 ```sh
-git clone https://github.com/Closegamer/deepseek-models-discount-time
+git clone https://github.com/Closegamer/deepseek-models-discount-time C:\a_REPOS\deepseek-models-discount-time
 ```
 
-2. Добавьте папку плагина в `plugins` в глобальном `~/.config/opencode/opencode.json` или в проектном `opencode.json`:
+Пример для macOS и Linux:
+
+```sh
+git clone https://github.com/Closegamer/deepseek-models-discount-time ~/opencode/deepseek-models-discount-time
+```
+
+2. Добавьте папку плагина в `plugins` в глобальном `~/.config/opencode/opencode.json` или в проектном `opencode.json`. Windows:
 
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugins": ["/absolute/path/to/deepseek-models-discount-time/deepseek-peak"]
+  "plugins": ["C:/a_REPOS/deepseek-models-discount-time/deepseek-peak"]
 }
 ```
 
-Пример для Windows:
+macOS и Linux:
 
 ```jsonc
-"plugins": ["C:/a_REPOS/skills/deepseek-peak"]
+"plugins": ["/home/you/opencode/deepseek-models-discount-time/deepseek-peak"]
 ```
+
+Используйте абсолютный путь. Относительный путь считается от папки, в которой запущен OpenCode, и может сломаться при смене проекта.
 
 OpenCode перечитывает конфигурацию при сохранении, перезапуск не нужен. Плагин сам регистрирует скилл, отдельная запись `skills` не требуется.
 
 3. Проверьте скрипт:
 
 ```sh
-node /absolute/path/to/deepseek-models-discount-time/deepseek-peak/peak.mjs
+node C:/a_REPOS/deepseek-models-discount-time/deepseek-peak/peak.mjs # Windows
+node ~/opencode/deepseek-models-discount-time/deepseek-peak/peak.mjs # macOS and Linux
 ```
 
 Пример вывода:
@@ -156,7 +180,13 @@ Discount ON, half price, Beijing 07:42 Tue, local 02:42 Tue. Next edge 09:00 Bei
 Уберите `plugins` и добавьте корень репозитория как источник скиллов:
 
 ```jsonc
-"skills": ["/absolute/path/to/deepseek-models-discount-time"]
+"skills": ["C:/a_REPOS/deepseek-models-discount-time"]
+```
+
+или для macOS и Linux:
+
+```jsonc
+"skills": ["/home/you/opencode/deepseek-models-discount-time"]
 ```
 
 Ассистент будет загружать `deepseek-peak`, когда вы спросите про цену, часы пика или время долгой задачи.
