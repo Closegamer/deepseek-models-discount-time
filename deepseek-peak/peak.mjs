@@ -93,9 +93,9 @@ export function hint(now) {
   const s = status(now)
   const until = s.until ? `${beijingClock(s.until).hm} Beijing (in ${s.left})` : "unknown"
   if (s.peak) {
-    return `DeepSeek peak pricing (Beijing ${s.now.hm} ${s.now.day}): PEAK, full token price (2x off-peak), until ${until}. Say this once in one short line near the start of the session, and warn the user before any long or expensive task. Do not repeat it in later replies.`
+    return `🔴 DeepSeek peak pricing (Beijing ${s.now.hm} ${s.now.day}): PEAK, full token price (2x off-peak), until ${until}. Say this once in one short line near the start of the session, and warn the user before any long or expensive task. Do not repeat it in later replies.`
   }
-  return `DeepSeek peak pricing (Beijing ${s.now.hm} ${s.now.day}): OFF-PEAK, half token price, until ${until}. Give the user a one-line green light, once near the start of the session. Do not repeat it in later replies.`
+  return `🟢 DeepSeek peak pricing (Beijing ${s.now.hm} ${s.now.day}): OFF-PEAK, half token price, until ${until}. Give the user a one-line green light, once near the start of the session. Do not repeat it in later replies.`
 }
 
 // One line for a shell check.
@@ -103,9 +103,9 @@ export function line(now) {
   const s = status(now)
   const until = s.until ? `${beijingClock(s.until).hm} Beijing (in ${s.left})` : "unknown"
   if (s.peak) {
-    return `PEAK full price (Beijing ${s.now.hm} ${s.now.day}), until ${until}. Tokens cost 2x off-peak. Warn before a long task.`
+    return `🔴 PEAK full price (Beijing ${s.now.hm} ${s.now.day}), until ${until}. Tokens cost 2x off-peak. Warn before a long task.`
   }
-  return `OFF-PEAK half price (Beijing ${s.now.hm} ${s.now.day}), until ${until}. Green light.`
+  return `🟢 OFF-PEAK half price (Beijing ${s.now.hm} ${s.now.day}), until ${until}. Green light.`
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

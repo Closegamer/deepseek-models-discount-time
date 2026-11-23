@@ -34,9 +34,9 @@ test("next change jumps over nights, weekends and holidays", () => {
   assert.equal(next("2026-12-31T18:30:00+08:00"), "2027-01-04T01:00:00.000Z") // over New Year
 })
 
-test("lines mention the right state", () => {
-  assert.match(line(at("2026-11-24T10:00:00+08:00")), /^PEAK full price/)
-  assert.match(line(at("2026-11-24T20:00:00+08:00")), /^OFF-PEAK half price/)
-  assert.match(hint(at("2026-11-24T10:00:00+08:00")), /PEAK, full token price/)
-  assert.match(hint(at("2026-11-24T20:00:00+08:00")), /OFF-PEAK, half token price/)
+test("lines mention the right state and light", () => {
+  assert.match(line(at("2026-11-24T10:00:00+08:00")), /^🔴 PEAK full price/)
+  assert.match(line(at("2026-11-24T20:00:00+08:00")), /^🟢 OFF-PEAK half price/)
+  assert.match(hint(at("2026-11-24T10:00:00+08:00")), /^🔴 .*PEAK, full token price/)
+  assert.match(hint(at("2026-11-24T20:00:00+08:00")), /^🟢 .*OFF-PEAK, half token price/)
 })
