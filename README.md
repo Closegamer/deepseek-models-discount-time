@@ -8,10 +8,12 @@ DeepSeek charges peak rates Monday to Friday, 09:00-12:00 and 14:00-18:00 Beijin
 
 The repo contains:
 
-- `deepseek-peak/peak.mjs`: prints the current window, the exact Beijing time when it changes, and exits 2 for peak or 0 for off-peak.
+- `deepseek-peak/peak.mjs`: prints the current window and the next edge in Beijing and local time, and exits 2 for peak or 0 for off-peak.
 - `deepseek-peak/index.mjs`: the OpenCode plugin. It adds the current window to every session and registers the skill, so the assistant starts a session with one line: `Discount OFF` or `Discount ON` with the next edge.
 - `deepseek-peak/SKILL.md`: the skill. When you ask about token cost, peak hours, or the best time for a long task, the assistant runs the script and reports the window.
 - `deepseek-peak/peak.test.mjs`: tests for the time windows, weekends, holidays, and the next change.
+
+The script reads your computer clock, so the edge time is also shown in your local timezone when it differs from Beijing.
 
 Pricing source: https://api-docs.deepseek.com/quick_start/pricing
 
@@ -51,7 +53,7 @@ node /absolute/path/to/deepseek-models-discount-time/deepseek-peak/peak.mjs
 Example output:
 
 ```text
-Discount ON, half price, Beijing 07:42 Tue. Next edge 09:00 Beijing, in 1h 18m. Green light.
+Discount ON, half price, Beijing 07:42 Tue, local 02:42 Tue. Next edge 09:00 Beijing, 04:00 local, in 1h 18m. Green light.
 ```
 
 4. Start a new session. Your first reply should include the `Discount ON` or `Discount OFF` line.
@@ -97,10 +99,12 @@ DeepSeek берёт полную цену с понедельника по пя�
 
 В репозитории:
 
-- `deepseek-peak/peak.mjs`: печатает текущее окно и точное пекинское время смены, код выхода 2 для пика и 0 для скидки.
+- `deepseek-peak/peak.mjs`: печатает текущее окно и время следующей смены по Пекину и по местному времени, код выхода 2 для пика и 0 для скидки.
 - `deepseek-peak/index.mjs`: плагин OpenCode. Добавляет текущее окно в каждую сессию и регистрирует скилл, поэтому первая строка ответа содержит `Discount OFF` или `Discount ON` и время следующей смены.
 - `deepseek-peak/SKILL.md`: сам скилл. Когда вы спрашиваете про цену токенов, часы пика или лучшее время для долгой задачи, ассистент запускает скрипт и сообщает окно.
 - `deepseek-peak/peak.test.mjs`: тесты окон, выходных, праздников и времени следующей смены.
+
+Скрипт читает системные часы компьютера и показывает время смены также в вашем местном часовом поясе, если он отличается от Пекина.
 
 Источник правил: https://api-docs.deepseek.com/quick_start/pricing
 
@@ -140,7 +144,7 @@ node /absolute/path/to/deepseek-models-discount-time/deepseek-peak/peak.mjs
 Пример вывода:
 
 ```text
-Discount ON, half price, Beijing 07:42 Tue. Next edge 09:00 Beijing, in 1h 18m. Green light.
+Discount ON, half price, Beijing 07:42 Tue, local 02:42 Tue. Next edge 09:00 Beijing, 04:00 local, in 1h 18m. Green light.
 ```
 
 4. Начните новую сессию. В первом ответе должна появиться строка с `Discount ON` или `Discount OFF`.

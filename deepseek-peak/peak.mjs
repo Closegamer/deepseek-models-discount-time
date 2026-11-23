@@ -63,11 +63,37 @@ function nextChange(now) {
   return undefined
 }
 
+const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+const BEIJING_TZ_OFFSET = -480 // minutes behind UTC, same as UTC+8
+
+function clock(date, useUtc) {
+  const h = useUtc ? date.getUTCHours() : date.getHours()
+  const m = useUtc ? date.getUTCMinutes() : date.getMinutes()
+  const day = useUtc ? date.getUTCDay() : date.getDay()
+  return { hm: `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`, day: DAYS[day] }
+}
+
 function beijingClock(date) {
-  const d = new Date(date.getTime() + BEIJING_OFFSET)
-  const hm = `${String(d.getUTCHours()).padStart(2, "0")}:${String(d.getUTCMinutes()).padStart(2, "0")}`
-  const day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][d.getUTCDay()]
-  return { hm, day }
+  return clock(new Date(date.getTime() + BEIJING_OFFSET), true)
+}
+
+function localClock(date) {
+  return clock(date, false)
+}
+
+// Show Beijing plus the computer's local time when the zones differ.
+function clocks(date) {
+  const bj = beijingClock(date)
+  if (date.getTimezoneOffset() === BEIJING_TZ_OFFSET) return `Beijing ${bj.hm} ${bj.day}`
+  const lo = localClock(date)
+  return `Beijing ${bj.hm} ${bj.day}, local ${lo.hm} ${lo.day}`
+}
+
+function edgeText(edge, left) {
+  if (!edge) return "unknown"
+  const bj = beijingClock(edge).hm
+  const local = edge.getTimezoneOffset() === BEIJING_TZ_OFFSET ? "" : `, ${localClock(edge).hm} local`
+  return `${bj} Beijing${local}, in ${left}`
 }
 
 function remaining(ms) {
@@ -92,21 +118,19 @@ export function status(now) {
 // One line for the plugin's system prompt.
 export function hint(now) {
   const s = status(now)
-  const edge = s.edge ? `${beijingClock(s.edge).hm} Beijing, in ${s.left}` : "unknown"
   if (s.peak) {
-    return `Discount OFF (peak pricing, full token price, 2x off-peak), Beijing ${s.now.hm} ${s.now.day}. Next edge ${edge}. Say this once in one short line, starting with "Discount OFF", near the start of the session, and warn the user before any long or expensive task. Do not repeat it in later replies.`
+    return `Discount OFF (peak pricing, full token price, 2x off-peak), ${clocks(now)}. Next edge ${edgeText(s.edge, s.left)}. Say this once in one short line, starting with "Discount OFF", near the start of the session, and warn the user before any long or expensive task. Do not repeat it in later replies.`
   }
-  return `Discount ON (off-peak pricing, half token price), Beijing ${s.now.hm} ${s.now.day}. Next edge ${edge}. Give the user a one-line green light starting with "Discount ON", once near the start of the session. Do not repeat it in later replies.`
+  return `Discount ON (off-peak pricing, half token price), ${clocks(now)}. Next edge ${edgeText(s.edge, s.left)}. Give the user a one-line green light starting with "Discount ON", once near the start of the session. Do not repeat it in later replies.`
 }
 
 // One line for a shell check, plain text for old terminals.
 export function line(now) {
   const s = status(now)
-  const edge = s.edge ? `${beijingClock(s.edge).hm} Beijing, in ${s.left}` : "unknown"
   if (s.peak) {
-    return `Discount OFF, full price (2x), Beijing ${s.now.hm} ${s.now.day}. Next edge ${edge}. Warn before a long task.`
+    return `Discount OFF, full price (2x), ${clocks(now)}. Next edge ${edgeText(s.edge, s.left)}. Warn before a long task.`
   }
-  return `Discount ON, half price, Beijing ${s.now.hm} ${s.now.day}. Next edge ${edge}. Green light.`
+  return `Discount ON, half price, ${clocks(now)}. Next edge ${edgeText(s.edge, s.left)}. Green light.`
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

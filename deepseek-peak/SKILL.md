@@ -16,7 +16,7 @@ The same peak windows in UTC are 01:00-04:00 and 06:00-10:00, Monday to Friday, 
 
 Run `node <skill folder>/peak.mjs`, where `<skill folder>` is the base directory shown for this skill. Exit code 2 means peak, 0 means off-peak.
 
-Tell the user in one or two lines: start with `Discount ON` or `Discount OFF`, then the price factor and the next edge time. `Discount ON` means off-peak, half price. `Discount OFF` means peak, full price.
+Tell the user in one or two lines: start with `Discount ON` or `Discount OFF`, then the price factor and the next edge time. `Discount ON` means off-peak, half price. `Discount OFF` means peak, full price. The script reads the computer clock and shows both Beijing and local time when the zones differ.
 
 ## Rules
 
