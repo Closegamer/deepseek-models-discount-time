@@ -79,33 +79,33 @@ function remaining(ms) {
 
 export function status(now) {
   const peak = isPeak(now)
-  const until = nextChange(now)
+  const edge = nextChange(now)
   return {
     peak,
-    until,
+    edge,
     now: beijingClock(now),
-    left: until ? remaining(until.getTime() - now.getTime()) : "unknown",
+    left: edge ? remaining(edge.getTime() - now.getTime()) : "unknown",
   }
 }
 
 // One line for the plugin's system prompt.
 export function hint(now) {
   const s = status(now)
-  const until = s.until ? `${beijingClock(s.until).hm} Beijing (in ${s.left})` : "unknown"
+  const edge = s.edge ? `${beijingClock(s.edge).hm} Beijing, in ${s.left}` : "unknown"
   if (s.peak) {
-    return `🔴 DeepSeek peak pricing (Beijing ${s.now.hm} ${s.now.day}): PEAK, full token price (2x off-peak), until ${until}. Say this once in one short line, starting with the same circle, near the start of the session, and warn the user before any long or expensive task. Do not repeat it in later replies.`
+    return `Discount OFF (peak pricing, full token price, 2x off-peak), Beijing ${s.now.hm} ${s.now.day}. Next edge ${edge}. Say this once in one short line, starting with "Discount OFF", near the start of the session, and warn the user before any long or expensive task. Do not repeat it in later replies.`
   }
-  return `🟢 DeepSeek peak pricing (Beijing ${s.now.hm} ${s.now.day}): OFF-PEAK, half token price, until ${until}. Give the user a one-line green light starting with the same circle, once near the start of the session. Do not repeat it in later replies.`
+  return `Discount ON (off-peak pricing, half token price), Beijing ${s.now.hm} ${s.now.day}. Next edge ${edge}. Give the user a one-line green light starting with "Discount ON", once near the start of the session. Do not repeat it in later replies.`
 }
 
-// One line for a shell check.
+// One line for a shell check, plain text for old terminals.
 export function line(now) {
   const s = status(now)
-  const until = s.until ? `${beijingClock(s.until).hm} Beijing (in ${s.left})` : "unknown"
+  const edge = s.edge ? `${beijingClock(s.edge).hm} Beijing, in ${s.left}` : "unknown"
   if (s.peak) {
-    return `🔴 PEAK full price (Beijing ${s.now.hm} ${s.now.day}), until ${until}. Tokens cost 2x off-peak. Warn before a long task.`
+    return `Discount OFF, full price (2x), Beijing ${s.now.hm} ${s.now.day}. Next edge ${edge}. Warn before a long task.`
   }
-  return `🟢 OFF-PEAK half price (Beijing ${s.now.hm} ${s.now.day}), until ${until}. Green light.`
+  return `Discount ON, half price, Beijing ${s.now.hm} ${s.now.day}. Next edge ${edge}. Green light.`
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

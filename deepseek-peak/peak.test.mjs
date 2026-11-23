@@ -3,7 +3,7 @@ import assert from "node:assert/strict"
 import { hint, isPeak, line, status } from "./peak.mjs"
 
 const at = (iso) => new Date(iso)
-const next = (iso) => status(at(iso)).until?.toISOString()
+const next = (iso) => status(at(iso)).edge?.toISOString()
 
 test("peak windows on a normal Tuesday", () => {
   assert.equal(isPeak(at("2026-11-24T08:59:00+08:00")), false)
@@ -34,9 +34,11 @@ test("next change jumps over nights, weekends and holidays", () => {
   assert.equal(next("2026-12-31T18:30:00+08:00"), "2027-01-04T01:00:00.000Z") // over New Year
 })
 
-test("lines mention the right state and light", () => {
-  assert.match(line(at("2026-11-24T10:00:00+08:00")), /^🔴 PEAK full price/)
-  assert.match(line(at("2026-11-24T20:00:00+08:00")), /^🟢 OFF-PEAK half price/)
-  assert.match(hint(at("2026-11-24T10:00:00+08:00")), /^🔴 .*PEAK, full token price/)
-  assert.match(hint(at("2026-11-24T20:00:00+08:00")), /^🟢 .*OFF-PEAK, half token price/)
+test("lines show the discount state and the next edge", () => {
+  assert.match(line(at("2026-11-24T10:00:00+08:00")), /^Discount OFF, full price/)
+  assert.match(line(at("2026-11-24T20:00:00+08:00")), /^Discount ON, half price/)
+  assert.match(line(at("2026-11-24T10:00:00+08:00")), /Next edge 12:00 Beijing, in 2h 0m/)
+  assert.match(line(at("2026-11-24T20:00:00+08:00")), /Next edge 09:00 Beijing, in 13h 0m/)
+  assert.match(hint(at("2026-11-24T10:00:00+08:00")), /^Discount OFF .*full token price/)
+  assert.match(hint(at("2026-11-24T20:00:00+08:00")), /^Discount ON .*half token price/)
 })
