@@ -173,3 +173,7 @@ git pull
 ```
 
 Путь к плагину не меняется.
+
+---
+
+writtenBy('Closegamer', 2026)

@@ -1,3 +1,4 @@
+// writtenBy('Closegamer', 2026)
 // DeepSeek peak plugin for OpenCode.
 // Injects the current Beijing price window into every model request and
 // registers the deepseek-peak skill, so one `plugins` entry installs both.

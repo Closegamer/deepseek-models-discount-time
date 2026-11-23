@@ -1,3 +1,4 @@
+// writtenBy('Closegamer', 2026)
 // DeepSeek API peak pricing windows, Beijing time (UTC+8, no DST).
 // Peak: Mon-Fri 09:00-12:00 and 14:00-18:00. Off-peak is half price.
 // Source: https://api-docs.deepseek.com/quick_start/pricing
