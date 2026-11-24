@@ -23,14 +23,14 @@ Requirements: OpenCode V2. Node 18 or newer is needed only for running the statu
 
 1. Clone the repo into a permanent folder. Do not clone into a temp directory, `C:\Program Files`, or the OpenCode cache, and do not move the folder after installing. Windows example:
 
-```sh
-git clone https://github.com/Closegamer/deepseek-models-discount-time C:\a_REPOS\deepseek-models-discount-time
+```powershell
+git clone https://github.com/Closegamer/deepseek-models-discount-time "$env:USERPROFILE\.config\opencode\plugins\deepseek-models-discount-time"
 ```
 
 macOS and Linux example:
 
 ```sh
-git clone https://github.com/Closegamer/deepseek-models-discount-time ~/opencode/deepseek-models-discount-time
+git clone https://github.com/Closegamer/deepseek-models-discount-time ~/.config/opencode/plugins/deepseek-models-discount-time
 ```
 
 2. Add the plugin folder to `plugins` in your global `~/.config/opencode/opencode.json` or in a project `opencode.json`. On Windows, run this from the repo folder:
@@ -44,14 +44,14 @@ Add `-Config C:\path\to\opencode.json` for a project config. An existing file is
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugins": ["C:/a_REPOS/deepseek-models-discount-time/deepseek-peak"]
+  "plugins": ["C:/Users/you/.config/opencode/plugins/deepseek-models-discount-time/deepseek-peak"]
 }
 ```
 
 macOS and Linux:
 
 ```jsonc
-"plugins": ["/home/you/opencode/deepseek-models-discount-time/deepseek-peak"]
+"plugins": ["/home/you/.config/opencode/plugins/deepseek-models-discount-time/deepseek-peak"]
 ```
 
 Use an absolute path. A relative path is resolved from the directory where OpenCode runs, so it can break when you switch projects.
@@ -61,8 +61,8 @@ OpenCode reloads configuration on save, no restart needed. The plugin registers 
 3. Check the script:
 
 ```sh
-node C:/a_REPOS/deepseek-models-discount-time/deepseek-peak/peak.mjs # Windows
-node ~/opencode/deepseek-models-discount-time/deepseek-peak/peak.mjs # macOS and Linux
+node C:/Users/you/.config/opencode/plugins/deepseek-models-discount-time/deepseek-peak/peak.mjs # Windows
+node ~/.config/opencode/plugins/deepseek-models-discount-time/deepseek-peak/peak.mjs # macOS and Linux
 ```
 
 Example output:
@@ -80,13 +80,13 @@ To uninstall, remove the entry from `plugins` and reload.
 Drop `plugins` and add the repo root as a skill source instead:
 
 ```jsonc
-"skills": ["C:/a_REPOS/deepseek-models-discount-time"]
+"skills": ["C:/Users/you/.config/opencode/plugins/deepseek-models-discount-time"]
 ```
 
 or on macOS and Linux:
 
 ```jsonc
-"skills": ["/home/you/opencode/deepseek-models-discount-time"]
+"skills": ["/home/you/.config/opencode/plugins/deepseek-models-discount-time"]
 ```
 
 The assistant then loads `deepseek-peak` when you ask about price, peak hours, or timing of a long task.
@@ -135,14 +135,14 @@ DeepSeek берёт полную цену с понедельника по пя�
 
 1. Клонируйте репозиторий в постоянную папку. Не клонируйте во временную папку, `C:\Program Files` или кеш OpenCode, и не перемещайте папку после установки. Пример для Windows:
 
-```sh
-git clone https://github.com/Closegamer/deepseek-models-discount-time C:\a_REPOS\deepseek-models-discount-time
+```powershell
+git clone https://github.com/Closegamer/deepseek-models-discount-time "$env:USERPROFILE\.config\opencode\plugins\deepseek-models-discount-time"
 ```
 
 Пример для macOS и Linux:
 
 ```sh
-git clone https://github.com/Closegamer/deepseek-models-discount-time ~/opencode/deepseek-models-discount-time
+git clone https://github.com/Closegamer/deepseek-models-discount-time ~/.config/opencode/plugins/deepseek-models-discount-time
 ```
 
 2. Добавьте папку плагина в `plugins` в глобальном `~/.config/opencode/opencode.json` или в проектном `opencode.json`. В Windows запустите из папки репозитория:
@@ -156,14 +156,14 @@ powershell -ExecutionPolicy Bypass -File .\install.ps1
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugins": ["C:/a_REPOS/deepseek-models-discount-time/deepseek-peak"]
+  "plugins": ["C:/Users/you/.config/opencode/plugins/deepseek-models-discount-time/deepseek-peak"]
 }
 ```
 
 macOS и Linux:
 
 ```jsonc
-"plugins": ["/home/you/opencode/deepseek-models-discount-time/deepseek-peak"]
+"plugins": ["/home/you/.config/opencode/plugins/deepseek-models-discount-time/deepseek-peak"]
 ```
 
 Используйте абсолютный путь. Относительный путь считается от папки, в которой запущен OpenCode, и может сломаться при смене проекта.
@@ -173,8 +173,8 @@ OpenCode перечитывает конфигурацию при сохране
 3. Проверьте скрипт:
 
 ```sh
-node C:/a_REPOS/deepseek-models-discount-time/deepseek-peak/peak.mjs # Windows
-node ~/opencode/deepseek-models-discount-time/deepseek-peak/peak.mjs # macOS and Linux
+node C:/Users/you/.config/opencode/plugins/deepseek-models-discount-time/deepseek-peak/peak.mjs # Windows
+node ~/.config/opencode/plugins/deepseek-models-discount-time/deepseek-peak/peak.mjs # macOS and Linux
 ```
 
 Пример вывода:
@@ -192,13 +192,13 @@ node ~/opencode/deepseek-models-discount-time/deepseek-peak/peak.mjs # macOS and
 Уберите `plugins` и добавьте корень репозитория как источник скиллов:
 
 ```jsonc
-"skills": ["C:/a_REPOS/deepseek-models-discount-time"]
+"skills": ["C:/Users/you/.config/opencode/plugins/deepseek-models-discount-time"]
 ```
 
 или для macOS и Linux:
 
 ```jsonc
-"skills": ["/home/you/opencode/deepseek-models-discount-time"]
+"skills": ["/home/you/.config/opencode/plugins/deepseek-models-discount-time"]
 ```
 
 Ассистент будет загружать `deepseek-peak`, когда вы спросите про цену, часы пика или время долгой задачи.
