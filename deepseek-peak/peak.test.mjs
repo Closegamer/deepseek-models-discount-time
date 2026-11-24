@@ -35,10 +35,10 @@ test("next change jumps over nights, weekends and holidays", () => {
 })
 
 test("lines show the discount state and the next edge", () => {
-  assert.match(line(at("2026-11-24T10:00:00+08:00")), /^Discount OFF, full price/)
-  assert.match(line(at("2026-11-24T20:00:00+08:00")), /^Discount ON, half price/)
+  assert.match(line(at("2026-11-24T10:00:00+08:00")), /^🔴 Discount OFF, full price/)
+  assert.match(line(at("2026-11-24T20:00:00+08:00")), /^🟢 Discount ON, half price/)
   assert.match(line(at("2026-11-24T10:00:00+08:00")), /Next edge 12:00 Beijing(, \d{2}:\d{2} local)?, in 2h 0m/)
   assert.match(line(at("2026-11-24T20:00:00+08:00")), /Next edge 09:00 Beijing(, \d{2}:\d{2} local)?, in 13h 0m/)
-  assert.match(hint(at("2026-11-24T10:00:00+08:00")), /^Discount OFF .*full token price/)
-  assert.match(hint(at("2026-11-24T20:00:00+08:00")), /^Discount ON .*half token price/)
+  assert.match(hint(at("2026-11-24T10:00:00+08:00")), /^🔴 Discount OFF .*full token price/)
+  assert.match(hint(at("2026-11-24T20:00:00+08:00")), /^🟢 Discount ON .*half token price/)
 })

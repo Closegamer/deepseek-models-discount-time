@@ -1,6 +1,6 @@
 # DeepSeek Models Discount Time
 
-An OpenCode skill and plugin that tells you whether DeepSeek API tokens are at full price or half price right now, based on Beijing time. It prints plain text that works in old terminals: `Discount OFF` during peak at full price, `Discount ON` off-peak at half price, plus the time of the next edge.
+An OpenCode skill and plugin that tells you whether DeepSeek API tokens are at full price or half price right now, based on Beijing time. It prints a red or green circle and plain text: `🔴 Discount OFF` during peak at full price, `🟢 Discount ON` off-peak at half price, plus the time of the next edge. The text stays readable even if the emoji does not render.
 
 ## What it is
 
@@ -9,7 +9,7 @@ DeepSeek charges peak rates Monday to Friday, 09:00-12:00 and 14:00-18:00 Beijin
 The repo contains:
 
 - `deepseek-peak/peak.mjs`: prints the current window and the next edge in Beijing and local time, and exits 2 for peak or 0 for off-peak.
-- `deepseek-peak/index.mjs`: the OpenCode plugin. It adds the current window to every session and registers the skill, so the assistant starts a session with one line: `Discount OFF` or `Discount ON` with the next edge.
+- `deepseek-peak/index.mjs`: the OpenCode plugin. It adds the current window to every session and registers the skill, so the assistant starts a session with one line: `🟢 Discount ON` or `🔴 Discount OFF` with the next edge.
 - `deepseek-peak/SKILL.md`: the skill. When you ask about token cost, peak hours, or the best time for a long task, the assistant runs the script and reports the window.
 - `deepseek-peak/peak.test.mjs`: tests for the time windows, weekends, holidays, and the next change.
 
@@ -68,10 +68,10 @@ node ~/opencode/deepseek-models-discount-time/deepseek-peak/peak.mjs # macOS and
 Example output:
 
 ```text
-Discount ON, half price, Beijing 07:42 Tue, local 02:42 Tue. Next edge 09:00 Beijing, 04:00 local, in 1h 18m. Green light.
+🟢 Discount ON, half price, Beijing 07:42 Tue, local 02:42 Tue. Next edge 09:00 Beijing, 04:00 local, in 1h 18m. Green light.
 ```
 
-4. Start a new session. Your first reply should include the `Discount ON` or `Discount OFF` line.
+4. Start a new session. Your first reply should include the `🟢 Discount ON` or `🔴 Discount OFF` line.
 
 To uninstall, remove the entry from `plugins` and reload.
 
@@ -112,7 +112,7 @@ The plugin path does not change.
 
 # Время скидок на модели DeepSeek
 
-Скилл и плагин для OpenCode, которые показывают, действует ли сейчас полная цена на токены DeepSeek или половина, по пекинскому времени. Вывод обычным текстом, работает в старых терминалах: `Discount OFF` означает полную цену, `Discount ON` означает скидку 50%, плюс время следующей смены.
+Скилл и плагин для OpenCode, которые показывают, действует ли сейчас полная цена на токены DeepSeek или половина, по пекинскому времени. Выводит красный или зелёный кружок и текст: `🔴 Discount OFF` означает полную цену, `🟢 Discount ON` означает скидку 50%, плюс время следующей смены. Текст читается, даже если эмодзи не отображается.
 
 ## Что это
 
@@ -121,7 +121,7 @@ DeepSeek берёт полную цену с понедельника по пя�
 В репозитории:
 
 - `deepseek-peak/peak.mjs`: печатает текущее окно и время следующей смены по Пекину и по местному времени, код выхода 2 для пика и 0 для скидки.
-- `deepseek-peak/index.mjs`: плагин OpenCode. Добавляет текущее окно в каждую сессию и регистрирует скилл, поэтому первая строка ответа содержит `Discount OFF` или `Discount ON` и время следующей смены.
+- `deepseek-peak/index.mjs`: плагин OpenCode. Добавляет текущее окно в каждую сессию и регистрирует скилл, поэтому первая строка ответа содержит `🟢 Discount ON` или `🔴 Discount OFF` и время следующей смены.
 - `deepseek-peak/SKILL.md`: сам скилл. Когда вы спрашиваете про цену токенов, часы пика или лучшее время для долгой задачи, ассистент запускает скрипт и сообщает окно.
 - `deepseek-peak/peak.test.mjs`: тесты окон, выходных, праздников и времени следующей смены.
 
@@ -180,10 +180,10 @@ node ~/opencode/deepseek-models-discount-time/deepseek-peak/peak.mjs # macOS and
 Пример вывода:
 
 ```text
-Discount ON, half price, Beijing 07:42 Tue, local 02:42 Tue. Next edge 09:00 Beijing, 04:00 local, in 1h 18m. Green light.
+🟢 Discount ON, half price, Beijing 07:42 Tue, local 02:42 Tue. Next edge 09:00 Beijing, 04:00 local, in 1h 18m. Green light.
 ```
 
-4. Начните новую сессию. В первом ответе должна появиться строка с `Discount ON` или `Discount OFF`.
+4. Начните новую сессию. В первом ответе должна появиться строка с `🟢 Discount ON` или `🔴 Discount OFF`.
 
 Чтобы удалить, уберите запись из `plugins` и перезагрузите конфигурацию.
 

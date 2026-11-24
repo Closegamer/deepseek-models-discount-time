@@ -119,18 +119,18 @@ export function status(now) {
 export function hint(now) {
   const s = status(now)
   if (s.peak) {
-    return `Discount OFF (peak pricing, full token price, 2x off-peak), ${clocks(now)}. Next edge ${edgeText(s.edge, s.left)}. Say this once in one short line, starting with "Discount OFF", near the start of the session, and warn the user before any long or expensive task. Do not repeat it in later replies.`
+    return `🔴 Discount OFF (peak pricing, full token price, 2x off-peak), ${clocks(now)}. Next edge ${edgeText(s.edge, s.left)}. Say this once in one short line, starting with "🔴 Discount OFF", near the start of the session, and warn the user before any long or expensive task. Do not repeat it in later replies.`
   }
-  return `Discount ON (off-peak pricing, half token price), ${clocks(now)}. Next edge ${edgeText(s.edge, s.left)}. Give the user a one-line green light starting with "Discount ON", once near the start of the session. Do not repeat it in later replies.`
+  return `🟢 Discount ON (off-peak pricing, half token price), ${clocks(now)}. Next edge ${edgeText(s.edge, s.left)}. Give the user a one-line green light starting with "🟢 Discount ON", once near the start of the session. Do not repeat it in later replies.`
 }
 
-// One line for a shell check, plain text for old terminals.
+// One line for a shell check.
 export function line(now) {
   const s = status(now)
   if (s.peak) {
-    return `Discount OFF, full price (2x), ${clocks(now)}. Next edge ${edgeText(s.edge, s.left)}. Warn before a long task.`
+    return `🔴 Discount OFF, full price (2x), ${clocks(now)}. Next edge ${edgeText(s.edge, s.left)}. Warn before a long task.`
   }
-  return `Discount ON, half price, ${clocks(now)}. Next edge ${edgeText(s.edge, s.left)}. Green light.`
+  return `🟢 Discount ON, half price, ${clocks(now)}. Next edge ${edgeText(s.edge, s.left)}. Green light.`
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
