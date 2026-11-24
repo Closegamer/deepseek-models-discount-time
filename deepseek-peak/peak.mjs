@@ -119,9 +119,9 @@ export function status(now) {
 export function hint(now) {
   const s = status(now)
   if (s.peak) {
-    return `🔴 Discount OFF (peak pricing, full token price, 2x off-peak), ${clocks(now)}. Next edge ${edgeText(s.edge, s.left)}. Say this once in one short line, starting with "🔴 Discount OFF", near the start of the session, and warn the user before any long or expensive task. Do not repeat it in later replies.`
+    return `🔴 Discount OFF (peak pricing, full token price, 2x off-peak), ${clocks(now)}. Next edge ${edgeText(s.edge, s.left)}. For every user prompt, including follow-ups, start your answer with "🔴 Discount OFF" and this window in one short line, then answer. Warn the user before any long or expensive task.`
   }
-  return `🟢 Discount ON (off-peak pricing, half token price), ${clocks(now)}. Next edge ${edgeText(s.edge, s.left)}. Give the user a one-line green light starting with "🟢 Discount ON", once near the start of the session. Do not repeat it in later replies.`
+  return `🟢 Discount ON (off-peak pricing, half token price), ${clocks(now)}. Next edge ${edgeText(s.edge, s.left)}. For every user prompt, including follow-ups, start your answer with "🟢 Discount ON" and this window in one short line, then answer.`
 }
 
 // One line for a shell check.

@@ -16,10 +16,11 @@ The same peak windows in UTC are 01:00-04:00 and 06:00-10:00, Monday to Friday, 
 
 Run `node <skill folder>/peak.mjs`, where `<skill folder>` is the base directory shown for this skill. Exit code 2 means peak, 0 means off-peak.
 
-Tell the user in one or two lines: start with `🟢 Discount ON` or `🔴 Discount OFF`, then the price factor and the next edge time. `🟢` means off-peak, half price. `🔴` means peak, full price. The script reads the computer clock and shows both Beijing and local time when the zones differ.
+For every user prompt, including follow-ups, start your answer with one or two lines: `🟢 Discount ON` or `🔴 Discount OFF`, then the price factor and the next edge time. `🟢` means off-peak, half price. `🔴` means peak, full price. The script reads the computer clock and shows both Beijing and local time when the zones differ.
 
 ## Rules
 
-1. During peak, show `🔴 Discount OFF` and warn that tokens cost full price (2x off-peak) before starting a long or expensive task.
-2. During off-peak, show `🟢 Discount ON` and give a green light.
-3. Never delay or schedule work yourself. Report the window and let the user decide.
+1. Put the status line first in every answer to a user prompt, not only the first one.
+2. During peak, show `🔴 Discount OFF` and warn that tokens cost full price (2x off-peak) before starting a long or expensive task.
+3. During off-peak, show `🟢 Discount ON` and give a green light.
+4. Never delay or schedule work yourself. Report the window and let the user decide.
